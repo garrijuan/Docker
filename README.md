@@ -63,3 +63,11 @@ test image: docker run -it -d --name server_quarkus --network host -e WEATHER_PO
 docker run -it -d --name weatherservice --network host -e WEATHER_PORT=9090 -p 9090:9090 garrijuan/weatherservice:v1.0
 
 # script para levantar crear todas las imagenes docker
+
+
+
+
+# run containers
+docker stop $(docker ps -q)
+docker rm $(docker ps -aq)
+docker-compose -f docker-compose-prod.yml up -d

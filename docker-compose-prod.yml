@@ -104,7 +104,7 @@ services:
       && java -jar planner-v0.1.jar"
       
   toposervice:
-    image: manloralm/toposervice:latest
+    image: garrijuan/toposervice:V1.1
     hostname: toposervice
     restart: on-failure
     environment:
