@@ -55,4 +55,7 @@ test image: docker run -it -d --name server_quarkus --network host -e WEATHER_PO
 
 # Weatherservice
     1- crear Dockerfile
+    2- desde /crearImagen
+    3- docker build -t garrijuan/weatherservice .
 
+docker run -it -d --name weatherservice --network host -e WEATHER_PORT=9090 -p 9090:9090 garrijuan/weatherservice:v1.0
