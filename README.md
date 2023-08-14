@@ -45,7 +45,9 @@ test image: docker run -it -d --name server_quarkus --network host -e WEATHER_PO
             mvnw.cmd
         ./mvnw wrapper:wrapper
     3- ./mvnw compile jib:build -DskipTests -Dimage=garrijuan/planner:v0.1
-    test image: docker run -it -d --name server_quarkus --network host -e WEATHER_PORT=9090 -p 9090:9090  garrijuan/server-quarkus:v0.1
+    
+    docker run -it -d --name planner --network host -e WEATHER_PORT=9090 -e RABBIT_PORT=5672 -p 8080:8080 garrijuan/planner:v0.1
+
 
 # Toposervice
     mvn spring-boot:build-image -Dspring-boot.build-image.imageName=garrijuan/toposervice:V1.1
