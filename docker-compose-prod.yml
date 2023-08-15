@@ -80,7 +80,7 @@ services:
       - 9090:9090
     
   planner:
-    image: garrijuan/planner:v0.1
+    image: garrijuan/planner:v0.2
     hostname: planner
     environment:
       - TOPO_HOST=toposervice
@@ -101,7 +101,7 @@ services:
       /bin/sh -c "./wait-for-it.sh weatherservice:9090 --timeout=0 
       && ./wait-for-it.sh rabbitmq:5672 --timeout=0 
       && ./wait-for-it.sh toposervice:8181 --timeout=0 
-      && java -jar planner-v0.1.jar"
+      && java -jar planner-v0.2.jar"
       
   toposervice:
     image: garrijuan/toposervice:V1.1

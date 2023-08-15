@@ -140,7 +140,7 @@
                 <version>3.3.1</version>
                 <configuration>
                 <from>
-                    <image>amazoncorretto:latest</image> <!-- Aquí defines la imagen base -->
+                    <image>eclipse-temurin:17-jdk</image> <!-- Aquí defines la imagen base -->
                 </from>
                 <!-- Otras configuraciones de Jib -->
 					<extraDirectories>

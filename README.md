@@ -22,31 +22,20 @@ docker-compose -f docker-compose-dev.yml up -d
     5-  docker tag juanangel/server-quarkus:1.0.0-SNAPSHOT garrijuan/server-quarkus:v0.1
         docker push garrijuan/server-quarkus:v0.1
 
-test image: docker run -it -d --name server_quarkus --network host -e WEATHER_PORT=9090 -p 9090:9090 --restart=always garrijuan/server-quarkus:v0.1
+docker run -it -d --name server_quarkus --network host -e WEATHER_PORT=9090 -p 9090:9090 --restart=always garrijuan/server-quarkus:v0.1
 
 
 # Planner
 
     1-meter dependencia en pom.xml
-                <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>3.3.1</version>
-                <configuration>
-                <from>
-                    <image>amazoncorretto:latest</image> <!-- Aquí defines la imagen base -->
-                </from>
-                <!-- Otras configuraciones de Jib -->
-                </configuration>
-                </plugin>
     2-   copiar (si no esta), de otro project:
             .mvn folder
             mvnw
             mvnw.cmd
         ./mvnw wrapper:wrapper
-    3- ./mvnw compile jib:build -DskipTests -Dimage=garrijuan/planner:v0.1
+    3- ./mvnw compile jib:build -DskipTests -Dimage=garrijuan/planner:v1.2
     
-    docker run -it -d --name planner --network host -e WEATHER_PORT=9090 -e RABBIT_PORT=5672 -p 8080:8080 garrijuan/planner:v0.1
+    docker run -it -d --name planner --network host -e WEATHER_PORT=9090 -e RABBIT_PORT=5672 -p 8080:8080 garrijuan/planner:v1.2
 
 
 # Toposervice
@@ -57,14 +46,13 @@ test image: docker run -it -d --name server_quarkus --network host -e WEATHER_PO
 
 # Weatherservice
     1- crear Dockerfile
-    2- desde /crearImagen
-    3- docker build -t garrijuan/weatherservice .
+    2- desde /makeImage
+    3- docker build -t garrijuan/weatherservice:v1.2 .
+    4- docker push garrijuan/weatherservice:v1.2
 
-docker run -it -d --name weatherservice --network host -e WEATHER_PORT=9090 -p 9090:9090 garrijuan/weatherservice:v1.0
+docker run -it -d --name weatherservice --network host -e WEATHER_PORT=9090 -p 9090:9090 garrijuan/weatherservice:v1.2
 
 # script para levantar crear todas las imagenes docker
-
-
 
 
 # run containers
