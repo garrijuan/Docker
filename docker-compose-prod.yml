@@ -45,7 +45,7 @@ services:
       - ./data/rabbitmq:/var/lib/rabbitmq
 
   server:
-    image: garrijuan/server-quarkus:v0.1
+    image: garrijuan/server:v1.3
     hostname: server
     restart: on-failure
     environment:
@@ -71,7 +71,7 @@ services:
       #start_period: 10s
     
   weatherservice:
-    image: garrijuan/weatherservice:v1.0
+    image: garrijuan/weatherservice:v1.3
     hostname: weatherservice
     environment:
       - WEATHER_PORT=9090
@@ -80,7 +80,7 @@ services:
       - 9090:9090
     
   planner:
-    image: garrijuan/planner:v0.2
+    image: garrijuan/planner:v1.3
     hostname: planner
     environment:
       - TOPO_HOST=toposervice
@@ -104,7 +104,7 @@ services:
       && java -jar planner-v0.2.jar"
       
   toposervice:
-    image: garrijuan/toposervice:V1.1
+    image: garrijuan/toposervice:v1.3
     hostname: toposervice
     restart: on-failure
     environment:

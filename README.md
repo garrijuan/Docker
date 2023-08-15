@@ -53,7 +53,10 @@ docker run -it -d --name server_quarkus --network host -e WEATHER_PORT=9090 -p 9
 docker run -it -d --name weatherservice --network host -e WEATHER_PORT=9090 -p 9090:9090 garrijuan/weatherservice:v1.2
 
 # script para levantar crear todas las imagenes docker
+ejecutar script desde /Docker
+./build_and_publish.sh
 
+nota: cambiar la version dentro del script para crear una images nuevas
 
 # run containers
 docker stop $(docker ps -q)
