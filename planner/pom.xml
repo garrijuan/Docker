@@ -143,6 +143,17 @@
                     <image>amazoncorretto:latest</image> <!-- Aquí defines la imagen base -->
                 </from>
                 <!-- Otras configuraciones de Jib -->
+					<extraDirectories>
+						<paths>
+							<path>src/main/resources/scripts</path>
+						</paths>
+						<permissions>
+							<permission>
+								<file>/wait-for-it.sh</file>
+								<mode>755</mode>
+							</permission>
+						</permissions>
+					</extraDirectories>
             	</configuration>
             </plugin>
 		</plugins>
