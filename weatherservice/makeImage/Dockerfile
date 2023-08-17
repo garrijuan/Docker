@@ -28,10 +28,10 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /usr/src/app/
 
 # Copy the jar file from the first stage
-COPY --from=builder /project/target/*.jar /usr/src/app/
+COPY --from=builder /project/target/*.jar /usr/src/app/weatherservice.jar
 
 # Expose the port
 EXPOSE 9090
 
 # Run the application
-CMD ["java", "-jar", "/usr/src/app/weatherservice-v1.2.jar"]
+CMD ["java", "-jar", "/usr/src/app/weatherservice.jar"]

@@ -2,7 +2,7 @@
 printf "\n STARTING...\n" 
 
 DOCKERHUB_NAME=garrijuan
-IMAGE_VERSION=v1.3
+IMAGE_VERSION=v1.5
 
 # Compile and publish Server
 SERVER_IMAGE_NAME="${DOCKERHUB_NAME}/server:${IMAGE_VERSION}"
@@ -36,8 +36,10 @@ TOPSERVICE_IMAGE_NAME="${DOCKERHUB_NAME}/toposervice:${IMAGE_VERSION}"
 
 printf "\n==> Compile and publish TopoService image named '%s' \n" ${TOPSERVICE_IMAGE_NAME}
 cd toposervice
-mvn spring-boot:build-image -Dspring-boot.build-image.imageName=${TOPSERVICE_IMAGE_NAME}
+mvn -Pnative spring-boot:build-image -Dspring-boot.build-image.imageName=${TOPSERVICE_IMAGE_NAME}
 docker push ${TOPSERVICE_IMAGE_NAME}
 cd ..
+
+printf "\n END.\n" 
 
 exit 0

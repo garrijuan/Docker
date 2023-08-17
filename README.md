@@ -39,7 +39,9 @@ docker run -it -d --name server_quarkus --network host -e WEATHER_PORT=9090 -p 9
 
 
 # Toposervice
-    mvn spring-boot:build-image -Dspring-boot.build-image.imageName=garrijuan/toposervice:V1.1
+    -meter dependencias de GraalVM en po.xml y configurar GraalVM en tu maquina
+    mvn -Pnative spring-boot:build-image -Dspring-boot.build-image.imageName=garrijuan/toposervice:V1.1
+
     docker push garrijuan/toposervice:V1.1
 
     docker run -it -d --name toposervice --network host -e TOPO_PORT=8181 -e TOPO_HOST=toposervice -e MONGO_PORT=27017 -e MONGO_HOST=localhost -e MONGO_INITDB_DATABASE=topo -d -p 8181:8181 garrijuan/toposervice:V1.1

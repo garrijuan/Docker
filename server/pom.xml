@@ -124,14 +124,14 @@
         	<plugin>
             	<groupId>io.quarkus</groupId>
             	<artifactId>quarkus-maven-plugin</artifactId>
-            	<version>1.13.3.Final</version> <!-- Usa la versión de Quarkus que estás utilizando -->
+            	<version>2.14.3.Final</version> <!-- Usa la versión de Quarkus que estás utilizando -->
             	<extensions>true</extensions>
         	</plugin>
         	<!-- Agrega el plugin de Docker para Quarkus -->
         	<plugin>
             	<groupId>io.quarkus</groupId>
             	<artifactId>quarkus-container-image-docker</artifactId>
-            	<version>1.13.3.Final</version> <!-- Usa la misma versión de Quarkus -->
+            	<version>2.14.3.Final</version> <!-- Usa la misma versión de Quarkus -->
         	</plugin>
 		</plugins>
 	</build>
