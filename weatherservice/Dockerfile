@@ -1,37 +1,18 @@
-#################################################
-# First step: Build the application
-#################################################
-# Base image to use, this must be set as the first line
-FROM maven:3.9.0-eclipse-temurin-17 as builder
-
-# The working directory inside the image to run commands
-WORKDIR /project/
-
-# Copy the pom.xml and install dependencies
-COPY pom.xml /project
-
-# Install dependencies
+# Build Stage
+FROM maven:3.8.4-openjdk-17 AS build
 RUN mvn -B clean verify --fail-never
 
-# Copy the source code
-COPY /src /project/src
-
-# Build the application
 RUN mvn -B package -DskipTests
 
-#################################################
-# Second step: Run the application
-#################################################
-FROM eclipse-temurin:17-jdk
+# Run Stage
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.6
+WORKDIR /work/
+RUN chown 1001 /work \
+    && chmod "g+rwX" /work \
+    && chown 1001:root /work
+COPY --chown=1001:root target/*-runner /work/application
 
-# Working directory with jar file
-WORKDIR /usr/src/app/
-
-# Copy the jar file from the first stage
-COPY --from=builder /project/target/*.jar /usr/src/app/
-
-# Expose the port
 EXPOSE 9090
+USER 1001
 
-# Run the application
-CMD ["java", "-jar", "/usr/src/app/weatherservice-v1.2.jar"]
+CMD ["./application", "-Dquarkus.http.host=0.0.0.0", "-Dquarkus.http.port=9090"]
