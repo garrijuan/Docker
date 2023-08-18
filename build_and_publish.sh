@@ -2,7 +2,7 @@
 printf "\n STARTING...\n" 
 
 DOCKERHUB_NAME=garrijuan
-IMAGE_VERSION=v1.5
+IMAGE_VERSION=v1.7
 
 # Compile and publish Server
 SERVER_IMAGE_NAME="${DOCKERHUB_NAME}/server:${IMAGE_VERSION}"
@@ -18,10 +18,10 @@ cd ..
 WEATHERSERVICE_IMAGE_NAME="${DOCKERHUB_NAME}/weatherservice:${IMAGE_VERSION}"
 
 printf "\n==> Compile and publish WeatherService image named '%s'\n" ${WEATHERSERVICE_IMAGE_NAME}
-cd weatherservice/makeImage
+cd weatherservice
+#mvn clean clean package -Pnative -Dquarkus.native.container-build=true , para regenrar el runner de target
 docker build -t ${WEATHERSERVICE_IMAGE_NAME} .
 docker push ${WEATHERSERVICE_IMAGE_NAME}
-cd ..
 cd ..
 # Compile and publish Planner
 PLANNER_IMAGE_NAME="${DOCKERHUB_NAME}/planner:${IMAGE_VERSION}"
